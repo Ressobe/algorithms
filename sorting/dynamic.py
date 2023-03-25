@@ -11,13 +11,11 @@ def fib_memoization(n, cache={}):
 
 def minimum_sum_subarray(array):
     min_element = min(array)
-
     for i in range(len(array)):
         for j in range(i + 1, len(array)):
             if len(array[i : j + 1]) == 0:
                 continue
 
-            # print(array[i : j + 1])
 
             suma = sum(array[i : j + 1])
             if suma < min_element:
