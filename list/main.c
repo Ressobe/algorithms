@@ -202,6 +202,38 @@ int test() {
   return 1;
 }
 
+int length_recursion(Node *node) {
+  if (node == NULL)
+    return 0;
+
+  return 1 + length_recursion(node->next);
+}
+
+void test2() {
+  for (int i = 1; i < 11; i++) {
+    insert_end(i);
+  }
+  length_recursion(head);
+}
+
+void pop() {
+  if (head == NULL) {
+    return;
+  }
+  Node *x = head;
+  Node *y = x->next;
+  if (y == NULL) {
+    head = NULL;
+    return;
+  }
+
+  while (x->next != NULL) {
+    y = x;
+    x = x->next;
+  }
+  y->next = NULL;
+}
+
 void print_menu() {
   printf("\nSingly Linked List \n");
   printf("---------------------------------\n");
@@ -218,72 +250,85 @@ void print_menu() {
 }
 
 int main(int argc, char *argv[]) {
-  int choice = 1;
-  int value;
-  int pos;
-
-  while (choice != 9) {
-    print_menu();
-    scanf("%d", &choice);
-    system("clear");
-
-    switch (choice) {
-    case 1:
-      print_list();
-      break;
-
-    case 2:
-      printf("Value for new node (number): ");
-      scanf("%d", &value);
-      insert_begin(value);
-      break;
-
-    case 3:
-      printf("Value for new node (number): ");
-      scanf("%d", &value);
-      insert_end(value);
-      break;
-
-    case 4:
-      printf("Value for new node (number): ");
-      scanf("%d", &value);
-
-      printf("Postition to insert (number): ");
-      scanf("%d", &pos);
-
-      insert_position(pos, value);
-      break;
-
-    case 5:
-      printf("Value of the node to delete (number): ");
-      scanf("%d", &value);
-      remove_element(value);
-      break;
-
-    case 6:
-      clear_list();
-      break;
-
-    case 7:
-      printf("Length: %d\n", length());
-      break;
-
-    case 8:
-      clear_list();
-      if (test()) {
-        printf("Test pass\n");
-      } else {
-
-        printf("Test fail\n");
-      }
-      clear_list();
-      break;
-
-    case 9:
-      choice = 9;
-      break;
-    }
-  }
-  clear_list();
+  test2();
   return 0;
 }
+// int main(int argc, char *argv[]) {
+//   int choice = 1;
+//   int value;
+//   int pos;
+
+//   while (choice != 9) {
+//     print_menu();
+//     scanf("%d", &choice);
+//     system("clear");
+
+//     switch (choice) {
+//     case 1:
+//       print_list();
+//       break;
+
+//     case 2:
+//       printf("Value for new node (number): ");
+//       scanf("%d", &value);
+//       insert_begin(value);
+//       break;
+
+//     case 3:
+//       printf("Value for new node (number): ");
+//       scanf("%d", &value);
+//       insert_end(value);
+//       break;
+
+//     case 4:
+//       printf("Value for new node (number): ");
+//       scanf("%d", &value);
+
+//       printf("Postition to insert (number): ");
+//       scanf("%d", &pos);
+
+//       insert_position(pos, value);
+//       break;
+
+//     case 5:
+//       printf("Value of the node to delete (number): ");
+//       scanf("%d", &value);
+//       remove_element(value);
+//       break;
+
+//     case 6:
+//       clear_list();
+//       break;
+
+//     case 7:
+//       printf("Length: %d\n", length());
+//       break;
+
+//     case 8:
+//       clear_list();
+//       if (test()) {
+//         printf("Test pass\n");
+//       } else {
+
+//         printf("Test fail\n");
+//       }
+//       clear_list();
+//       break;
+
+//     case 9:
+//       choice = 9;
+//       break;
+
+//     case 10:
+//       printf("Length recursion: %d\n", length_recursion(head));
+//       break;
+
+//     case 11:
+//       pop();
+//       printf("Pop \n");
+//       break;
+//     }
+//   }
+//   clear_list();
+//   return 0;
+// }
