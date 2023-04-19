@@ -5,19 +5,29 @@ class Node {
     this.right = null;
   }
 }
+const createTree = () => {
+  const D = new Node("D");
+  const E = new Node("E");
+  const T = new Node("T");
+  const K = new Node("K");
+  const S = new Node("S");
+  const J = new Node("J");
+  const B = new Node("B");
+  const Y = new Node("Y");
+  const H = new Node("H");
+  D.left = E;
+  D.right = T;
+  E.left = Y;
+  Y.right = H;
+  T.left = K;
+  K.left = B;
+  T.right = S;
+  S.right = J;
 
-const a = new Node("a");
-const b = new Node("b");
-const c = new Node("c");
-const d = new Node("d");
-const e = new Node("e");
-const f = new Node("f");
+  return D;
+};
 
-a.left = b;
-a.right = c;
-b.left = d;
-b.right = e;
-c.right = f;
+const root = createTree();
 
 const depthFirstValues = (root) => {
   if (root === null) return [];
@@ -44,6 +54,13 @@ const depthFirstValuesRecursion = (node) => {
   return [node.value, ...leftSide, ...rightSide];
 };
 
+const depth2 = (node) => {
+  if (node === null) return;
+  console.log(node.value);
+  depth2(node.left);
+  depth2(node.right);
+};
+
 const breadthFirstValues = (root) => {
   const result = [];
   if (root === null) return result;
@@ -61,5 +78,28 @@ const breadthFirstValues = (root) => {
   return result;
 };
 
-console.log(depthFirstValues(a));
-console.log(breadthFirstValues(a));
+const tree = ["", "D", "A", "F", "E", "B", "R", "T", "G", "Q", "", "", "V", "", "J", "L"];
+
+const getRightChild = (idx) => {
+  let new_idx = 2 * idx + 1;
+  if (tree[idx] !== "" && new_idx < tree.length) {
+    return new_idx;
+  }
+  return -1;
+};
+
+const getLeftChild = (idx) => {
+  let new_idx = 2 * idx;
+  if (tree[idx] !== "" && new_idx < tree.length) {
+    return new_idx;
+  }
+  return -1;
+};
+
+const inorder = (i) => {
+  if (tree[i] !== "" && i > 0) {
+    inorder(getLeftChild(i));
+    console.log(tree[i]);
+    inorder(getRightChild(i));
+  }
+};
