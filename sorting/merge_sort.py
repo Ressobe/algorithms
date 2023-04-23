@@ -1,9 +1,9 @@
 def merge_sort(array: list) -> list:
     if len(array) <= 1:
-        return 0
+        return []
 
     left_array = array[: len(array) // 2]
-    right_array = array[len(array) // 2 :]
+    right_array = array[len(array) // 2:]
 
     merge_sort(left_array)
     merge_sort(right_array)
